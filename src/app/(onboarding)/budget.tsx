@@ -32,11 +32,11 @@ export default function BudgetStep() {
         router.push('/preferences');
       }}>
       <TextField
-        label="Presupuesto máximo ($)"
+        label="Presupuesto máximo (USD)"
         value={text}
         onChangeText={setText}
         keyboardType="decimal-pad"
-        placeholder="Por ejemplo, 300"
+        placeholder="Por ejemplo, 50"
       />
       {invalid && (
         <ThemedText type="small" themeColor="textSecondary">

@@ -51,14 +51,14 @@ isOneToOne: false
                   ]
                 },"products": {
                   Row: {
-                    "active": boolean,"attributes": (Database["public"]['Enums']["product_attribute"])[],"brand": string,"category": Database["public"]['Enums']["product_category"],"created_at": string,"description": string | null,"id": string,"image_path": string | null,"key_ingredients": (string)[],"name": string,"price": number,"size_label": string | null,"skin_types": (Database["public"]['Enums']["skin_type"])[],"targets": (Database["public"]['Enums']["skin_concern"])[],"updated_at": string
+                    "active": boolean,"attributes": (Database["public"]['Enums']["product_attribute"])[],"brand": string,"category": Database["public"]['Enums']["product_category"],"created_at": string,"description": string | null,"external_id": string | null,"id": string,"image_path": string | null,"key_ingredients": (string)[],"name": string,"price": number,"size_label": string | null,"skin_types": (Database["public"]['Enums']["skin_type"])[],"targets": (Database["public"]['Enums']["skin_concern"])[],"updated_at": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "active"?: boolean,"attributes"?: (Database["public"]['Enums']["product_attribute"])[],"brand": string,"category": Database["public"]['Enums']["product_category"],"created_at"?: string,"description"?: string | null,"id"?: string,"image_path"?: string | null,"key_ingredients"?: (string)[],"name": string,"price": number,"size_label"?: string | null,"skin_types"?: (Database["public"]['Enums']["skin_type"])[],"targets"?: (Database["public"]['Enums']["skin_concern"])[],"updated_at"?: string
+                    "active"?: boolean,"attributes"?: (Database["public"]['Enums']["product_attribute"])[],"brand": string,"category": Database["public"]['Enums']["product_category"],"created_at"?: string,"description"?: string | null,"external_id"?: string | null,"id"?: string,"image_path"?: string | null,"key_ingredients"?: (string)[],"name": string,"price": number,"size_label"?: string | null,"skin_types"?: (Database["public"]['Enums']["skin_type"])[],"targets"?: (Database["public"]['Enums']["skin_concern"])[],"updated_at"?: string
                   }
                   Update: {
-                    "active"?: boolean,"attributes"?: (Database["public"]['Enums']["product_attribute"])[],"brand"?: string,"category"?: Database["public"]['Enums']["product_category"],"created_at"?: string,"description"?: string | null,"id"?: string,"image_path"?: string | null,"key_ingredients"?: (string)[],"name"?: string,"price"?: number,"size_label"?: string | null,"skin_types"?: (Database["public"]['Enums']["skin_type"])[],"targets"?: (Database["public"]['Enums']["skin_concern"])[],"updated_at"?: string
+                    "active"?: boolean,"attributes"?: (Database["public"]['Enums']["product_attribute"])[],"brand"?: string,"category"?: Database["public"]['Enums']["product_category"],"created_at"?: string,"description"?: string | null,"external_id"?: string | null,"id"?: string,"image_path"?: string | null,"key_ingredients"?: (string)[],"name"?: string,"price"?: number,"size_label"?: string | null,"skin_types"?: (Database["public"]['Enums']["skin_type"])[],"targets"?: (Database["public"]['Enums']["skin_concern"])[],"updated_at"?: string
                   }
                   Relationships: [
                     
