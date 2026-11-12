@@ -1,4 +1,5 @@
 export * from './compare';
+export * from './compare-text';
 export * from './compatibility';
 export * from './format';
 export * from './routine';

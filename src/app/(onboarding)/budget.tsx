@@ -4,13 +4,8 @@ import { useState } from 'react';
 import { OnboardingStep } from '@/components/onboarding-step';
 import { ThemedText } from '@/components/themed-text';
 import { TextField } from '@/components/ui/text-field';
+import { parseBudget } from '@/lib/budget';
 import { useOnboardingDraft } from '@/stores/onboarding-draft';
-
-/** Convierte lo que escribe el usuario en un monto válido, o null si está vacío o no es positivo */
-const parseBudget = (text: string): number | null => {
-  const n = Number(text.replace(',', '.').trim());
-  return text.trim() !== '' && Number.isFinite(n) && n > 0 ? Math.round(n * 100) / 100 : null;
-};
 
 export default function BudgetStep() {
   const budgetMax = useOnboardingDraft((s) => s.budgetMax);

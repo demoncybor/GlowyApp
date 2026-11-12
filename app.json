@@ -34,7 +34,17 @@
         }
       ],
       "expo-secure-store",
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Glowy accede a tus fotos para que guardes imágenes de los productos de tu rutina.",
+          "cameraPermission": "Glowy usa la cámara para fotografiar los productos de tu rutina.",
+          "microphonePermission": false
+        }
+      ],
+      "expo-image",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,

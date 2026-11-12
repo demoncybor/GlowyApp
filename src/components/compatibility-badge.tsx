@@ -10,13 +10,15 @@ type CompatibilityBadgeProps = {
   score: number;
   /** Una frase por factor; se despliegan al tocar el porcentaje */
   reasons: string[];
+  /** Mostrar la explicación desde el inicio (pantalla de detalle) */
+  defaultOpen?: boolean;
 };
 
 const LEVEL_TEXT = { alta: 'Compatibilidad alta', media: 'Compatibilidad media', baja: 'Compatibilidad baja' };
 
-export function CompatibilityBadge({ score, reasons }: CompatibilityBadgeProps) {
+export function CompatibilityBadge({ score, reasons, defaultOpen = false }: CompatibilityBadgeProps) {
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   const level = levelFor(score);
   const color = { alta: theme.levelHigh, media: theme.levelMedium, baja: theme.levelLow }[level];
 

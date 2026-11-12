@@ -16,6 +16,21 @@ export default function TabsLayout() {
         <NativeTabs.Trigger.Icon sf={{ default: 'sparkles', selected: 'sparkles' }} md="auto_awesome" />
       </NativeTabs.Trigger>
 
+      <NativeTabs.Trigger name="explore">
+        <NativeTabs.Trigger.Label>Explorar</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={{ default: 'magnifyingglass', selected: 'magnifyingglass' }} md="search" />
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="routine">
+        <NativeTabs.Trigger.Label>Rutina</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={{ default: 'drop', selected: 'drop.fill' }} md="water_drop" />
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="favorites">
+        <NativeTabs.Trigger.Label>Favoritos</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={{ default: 'heart', selected: 'heart.fill' }} md="favorite" />
+      </NativeTabs.Trigger>
+
       <NativeTabs.Trigger name="profile">
         <NativeTabs.Trigger.Label>Perfil</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf={{ default: 'person', selected: 'person.fill' }} md="person" />

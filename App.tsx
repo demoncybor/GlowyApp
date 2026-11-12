@@ -3,26 +3,28 @@
  *
  * Este proyecto usa Expo Router, que arranca desde src/app/_layout.tsx (ver "main" en package.json).
  * Ese archivo solo reexporta este componente, así que aquí está todo lo que envuelve a la app:
- *   1. Proveedores globales: TanStack Query (datos del servidor) y el tema claro/oscuro.
+ *   1. Proveedores globales: TanStack Query (datos del servidor, guardados en el dispositivo para usar
+ *      la app sin conexión) y el tema claro/oscuro.
  *   2. Sesión: al abrir la app se restaura la sesión guardada en el dispositivo.
  *   3. Navegación: decide qué zona ve el usuario según su sesión y su perfil.
  *        - Sin sesión ................................. (auth)        login y registro
  *        - Con sesión y perfil incompleto ............. (onboarding)  tipo de piel, objetivos, presupuesto, preferencias
- *        - Con sesión y perfil completo ............... (app)         pestañas Para ti y Perfil
+ *        - Con sesión y perfil completo ............... (app)         Para ti, Explorar, Rutina, Favoritos y Perfil
  */
-import { QueryClientProvider } from '@tanstack/react-query';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, useColorScheme, View } from 'react-native';
 
+import { OfflineBanner } from '@/components/offline-banner';
 import { ThemedText } from '@/components/themed-text';
 import { Button } from '@/components/ui/button';
 import { Spacing } from '@/constants/theme';
 import { useProfile } from '@/hooks/use-profile';
 import { useTheme } from '@/hooks/use-theme';
 import { homeHref } from '@/lib/navigation';
-import { queryClient } from '@/lib/query-client';
+import { persistOptions, queryClient } from '@/lib/query-client';
 import { signOut } from '@/services/auth';
 import { startSessionListener, useSessionStore } from '@/stores/session';
 
@@ -35,11 +37,16 @@ export default function App() {
   useEffect(() => startSessionListener(), []);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={persistOptions}
+      // al restaurar la caché, enviar los cambios que quedaron en cola sin conexión
+      onSuccess={() => queryClient.resumePausedMutations()}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <RootNavigator />
+        <OfflineBanner />
       </ThemeProvider>
-    </QueryClientProvider>
+    </PersistQueryClientProvider>
   );
 }
 

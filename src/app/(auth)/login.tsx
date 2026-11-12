@@ -60,6 +60,11 @@ export default function LoginScreen() {
           </ThemedText>
         )}
         <Button title="Entrar" onPress={onSubmit} disabled={!canSubmit} loading={loading} />
+        <Link href="/forgot-password" style={styles.forgot}>
+          <ThemedText type="small" style={{ color: theme.primary }}>
+            ¿Olvidaste tu contraseña?
+          </ThemedText>
+        </Link>
       </View>
       <View style={styles.footer}>
         <ThemedText type="small" themeColor="textSecondary">
@@ -77,5 +82,6 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   form: { gap: Spacing.three },
+  forgot: { alignSelf: 'center', paddingVertical: Spacing.one },
   footer: { flexDirection: 'row', gap: Spacing.two, justifyContent: 'center', alignItems: 'center' },
 });

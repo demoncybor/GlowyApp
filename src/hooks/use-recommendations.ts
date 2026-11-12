@@ -1,14 +1,27 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
+import { mergeCatalog, type CatalogCache } from '@/lib/catalog-sync';
 import { queryKeys } from '@/lib/query-client';
 import { rank } from '@/scoring';
-import { listCatalog } from '@/services/products';
+import { listCatalogChanges } from '@/services/products';
 
 import { useProfile } from './use-profile';
 
+/**
+ * Catálogo compacto guardado en el dispositivo. La primera vez se descarga completo; después solo
+ * se piden los productos que cambiaron desde la última sincronización.
+ */
 export function useCatalog() {
-  return useQuery({ queryKey: queryKeys.catalog, queryFn: listCatalog });
+  const queryClient = useQueryClient();
+  return useQuery({
+    queryKey: queryKeys.catalog,
+    queryFn: async (): Promise<CatalogCache> => {
+      const cache = queryClient.getQueryData<CatalogCache>(queryKeys.catalog);
+      return mergeCatalog(cache, await listCatalogChanges(cache?.syncedAt ?? null));
+    },
+    select: (cache) => cache.products,
+  });
 }
 
 /** Catálogo ordenado por compatibilidad con el perfil; se calcula en el dispositivo */
